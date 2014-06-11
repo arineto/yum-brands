@@ -31,7 +31,7 @@ def logout_aux(request):
 
 @login_required
 def overview(request):
-	return render(request, 'overview.html', {})
+	return render(request, 'overview.html', {'overview':True})
 
 
 @login_required
