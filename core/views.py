@@ -45,7 +45,6 @@ def dashboard(request):
 
 @login_required
 def add_branch(request):
-
 	if request.method == "POST":
 		form = BranchForm(request.POST)
 		lat = request.POST.get('latitude')
@@ -64,7 +63,21 @@ def add_branch(request):
 
 @login_required
 def edit_branch(request, branch_id):
-	return redirect('/')
+	instance = Branch.objects.get(id=branch_id)
+	if request.method == "POST":
+		form = BranchForm(request.POST, instance=instance)
+		lat = request.POST.get('latitude')
+		lng = request.POST.get('longitude')
+		if form.is_valid():
+			branch = form.save(commit=False)
+			branch.latitude = lat
+			branch.longitude = lng
+			branch.save()
+			return redirect("/dashboard/")
+	else:
+		form = BranchForm(instance=instance)
+
+	return render(request, 'forms.html', {'form':form})
 
 
 @login_required
