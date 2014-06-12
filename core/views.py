@@ -32,7 +32,8 @@ def logout_aux(request):
 
 @login_required
 def overview(request):
-	return render(request, 'overview.html', {'overview':True})
+	branches = Branch.objects.all()
+	return render(request, 'overview.html', {'overview':True, 'branches':branches})
 
 
 @login_required

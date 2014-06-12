@@ -22,11 +22,35 @@
 			var autocomplete = new google.maps.places.Autocomplete(input);
 
 			map = init_map(map);
+			{% for branch in branches %}
+				content = "{{ branch.get_brand_display }} {{ branch.address }}";
+		        // icon = "{{ STATIC_URL }}img/icons/{{ quarry.name }}.png";
+		        create_marker("{{ branch.get_brand_display }}", "{{ branch.latitude }}", "{{ branch.longitude }}", content);
+			{% endfor %}
 	    }
 	    google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 
 	<script type="text/javascript">
+		function create_marker(brand, latitude, longitude, content){
+			var marker = null;
+			marker = new google.maps.Marker({
+				position: new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)),
+				map: map,
+				title: brand
+				// icon: icon
+			});
+
+			google.maps.event.addListener(marker, 'click', function () {
+				if(info_window){
+					info_window.setMap(null);
+				}
+				info_window = new google.maps.InfoWindow({
+					content: content
+				})
+				info_window.open(map, marker);
+			});
+		} 
 		$( document ).ready(function() {
 	      setSizes();
 	      $(window).resize(function(){
