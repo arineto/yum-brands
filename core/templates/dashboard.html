@@ -14,6 +14,29 @@
 </head>
 <body>
 	{% include 'navbar.html' %}
-dashboard
+	<div class="row jumbotron dashboard">
+		<div class="col-md-8"><h3>Branches</h3></div>
+		<div class="col-md-4"><a href="/add_branch/" class="btn btn-default">Add Branch</a></div>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Brand</th>
+				<th>Address</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for branch in branches %}
+				<tr>
+					<td>{{ row.brand }}</td>
+					<td>{{ row.user.address }}</td>
+					<td><a href="/edit_branch/">Edit</a></td>
+					<td><a href="/delete_branch/">Delete</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 </body>
 </html>
