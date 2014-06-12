@@ -1,6 +1,7 @@
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from core.models import *
 
 
 def home(request):
@@ -36,4 +37,5 @@ def overview(request):
 
 @login_required
 def dashboard(request):
-	return render(request, 'dashboard.html', {})
+	branches = Branch.objects.all()
+	return render(request, 'dashboard.html', {'branches':branches})

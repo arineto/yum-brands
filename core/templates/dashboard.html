@@ -30,10 +30,10 @@
 		<tbody>
 			{% for branch in branches %}
 				<tr>
-					<td>{{ row.brand }}</td>
-					<td>{{ row.user.address }}</td>
-					<td><a href="/edit_branch/">Edit</a></td>
-					<td><a href="/delete_branch/">Delete</a></td>
+					<td>{{ branch.get_brand_display }}</td>
+					<td>{{ branch.address }}</td>
+					<td><a href="/edit_branch/{{ branch.id }}/">Edit</a></td>
+					<td><a href="/delete_branch/{{ branch.id }}/">Delete</a></td>
 				</tr>
 			{% endfor %}
 		</tbody>
