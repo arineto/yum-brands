@@ -18,10 +18,16 @@
 		<div class="col-md-8"><h3>Branches</h3></div>
 		<div class="col-md-4"><a href="/add_branch/" class="btn btn-default">Add Branch</a></div>
 	</div>
-	<table class="table table-striped">
+	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th>Brand</th>
+				<th>Company Name</th>
+				<th>Franchise</th>
+				<th>Contact Name</th>
+				<th>Phone</th>
+				<th>E-mail</th>
+				<th>Owner Name</th>
+				<th>Operator Name</th>
 				<th>Address</th>
 				<th></th>
 				<th></th>
@@ -30,7 +36,13 @@
 		<tbody>
 			{% for branch in branches %}
 				<tr>
-					<td>{{ branch.get_brand_display }}</td>
+					<td>{{ branch.name }}</td>
+					<td>{{ branch.get_franchise_display }}</td>
+					<td>{{ branch.contact_name }}</td>
+					<td>{{ branch.phone }}</td>
+					<td>{{ branch.email }}</td>
+					<td>{{ branch.owner_name }}</td>
+					<td>{{ branch.operator_name }}</td>
 					<td>{{ branch.address }}</td>
 					<td><a href="/edit_branch/{{ branch.id }}/">Edit</a></td>
 					<td><a href="/delete_branch/{{ branch.id }}/">Delete</a></td>
