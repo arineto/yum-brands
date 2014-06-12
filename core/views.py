@@ -40,3 +40,19 @@ def overview(request):
 def dashboard(request):
 	branches = Branch.objects.all()
 	return render(request, 'dashboard.html', {'branches':branches})
+
+
+@login_required
+def add_branch(request):
+	return redirec('/')
+
+
+@login_required
+def edit_branch(request, branch_id):
+	return redirec('/')
+
+
+@login_required
+def delete_branch(request, branch_id):
+	Branch.objects.get(id=branch_id).delete()
+	return redirect('/dashboard/')
