@@ -151,6 +151,15 @@ body {
 
 }
 
+.hidden{
+	overflow: hidden;
+}
+
+.my_form{
+	width:600px;
+	margin: 0 auto;
+}
+
 @media (min-width: 768px) and (max-width: 991px){
 	.my_search{
 		width: 300px !important;

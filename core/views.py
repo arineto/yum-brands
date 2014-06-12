@@ -2,6 +2,7 @@ from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from core.models import *
+from core.forms import *
 
 
 def home(request):
@@ -44,12 +45,26 @@ def dashboard(request):
 
 @login_required
 def add_branch(request):
-	return redirec('/')
+
+	if request.method == "POST":
+		form = BranchForm(request.POST)
+		lat = request.POST.get('latitude')
+		lng = request.POST.get('longitude')
+		if form.is_valid():
+			branch = form.save(commit=False)
+			branch.latitude = lat
+			branch.longitude = lng
+			branch.save()
+			return redirect("/dashboard/")
+	else:
+		form = BranchForm()
+
+	return render(request, 'forms.html', {'form':form})
 
 
 @login_required
 def edit_branch(request, branch_id):
-	return redirec('/')
+	return redirect('/')
 
 
 @login_required
