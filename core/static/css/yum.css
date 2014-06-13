@@ -116,6 +116,7 @@ body {
 .box_content{
 	max-height: 450px;
 	overflow: auto;
+	padding-left: 15px;
 }
 
 .my_table{
@@ -158,6 +159,10 @@ body {
 .my_form{
 	width:600px;
 	margin: 0 auto;
+}
+
+.align_center{
+	text-align: center;
 }
 
 @media (min-width: 768px) and (max-width: 991px){
