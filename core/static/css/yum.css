@@ -115,6 +115,7 @@ body {
 
 .box_content{
 	max-height: 450px;
+	max-width: 350px;
 	overflow: auto;
 	padding-left: 15px;
 }
