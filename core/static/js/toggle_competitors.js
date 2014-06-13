@@ -1,14 +1,16 @@
 var comp_hash = {};
 var comp_name;
+var comp_icon;
 
-function toggle_competitor(competitor){
+function toggle_competitor(competitor, icon){
 	if (competitor.checked){
 		var request = {
 		    location: map.getCenter(),
 		    radius: '50000',
 		    query: competitor.name
 		};
-
+		
+		comp_icon = icon;
 		comp_name = competitor.name;
 		comp_hash[comp_name] = [];
 
@@ -32,12 +34,11 @@ function callback(results, status) {
 }
 
 function createMarker(name, latlng){
-	var image = 'http://www.foresttransparency.info/images/icons/red-point.gif';
 	marker = new google.maps.Marker({
 		map: map,
 		position: latlng,
 		title: name,
-		icon: image
+		icon: comp_icon
 	});
 	comp_hash[comp_name].push(marker);
 }

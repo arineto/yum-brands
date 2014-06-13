@@ -46,7 +46,8 @@ def overview(request, filter_value=None):
 		branches = Branch.objects.filter(franchise=BRANDS[filter_value])
 	else:
 		branches = Branch.objects.all()
-	return render(request, 'overview.html', {'overview':True, 'branches':branches})
+	competitors = Competitor.objects.all()
+	return render(request, 'overview.html', {'overview':True, 'branches':branches, 'competitors':competitors})
 
 
 @login_required

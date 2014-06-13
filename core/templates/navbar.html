@@ -57,16 +57,13 @@
           <ul class="dropdown-menu">
             <li>
               <form class="navbar-form navbar-right">
+                {% for competitor in competitors %}
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" name="mc donalds" onclick="toggle_competitor(this);"> MC Dondald's
+                    <input type="checkbox" name="{{ competitor.name }}" onclick="toggle_competitor(this, '{{ competitor.icon }}');"> {{ competitor.name }}
                   </label>
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="pizza pizza" onclick="toggle_competitor(this)"> Pizza Pizza
-                  </label>
-                </div>
+                {% endfor %}
               </form>              
             </li>
           </ul>

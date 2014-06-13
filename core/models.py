@@ -23,3 +23,21 @@ class Branch(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+
+class Brand(models.Model):
+	name = models.CharField(max_length=50, verbose_name="Brand")
+	icon = models.URLField()
+	date = models.DateTimeField(auto_now=True)
+
+	def __unicode__(self):
+		return self.name
+
+
+class Competitor(models.Model):
+	name = models.CharField(max_length=50, verbose_name="Competitor")
+	icon = models.URLField()
+	date = models.DateTimeField(auto_now=True)
+
+	def __unicode__(self):
+		return self.name
