@@ -39,24 +39,23 @@ def logout_aux(request):
 
 
 @login_required
-def overview(request):
-	branches = Branch.objects.all()
-	return render(request, 'overview.html', {'overview':True, 'branches':branches})
-
-
-@login_required
-def dashboard(request):
-	branches = Branch.objects.all().order_by('-date')
-	return render(request, 'dashboard.html', {'branches':branches})
-
-
-def filter(request, filter_value):
+def overview(request, filter_value=None):
 	branch_filters = ["KFC", "Taco Bell", "Pizza Hut"]
 	if filter_value in branch_filters:
 		branches = Branch.objects.filter(franchise=BRANDS[filter_value])
 	else:
 		branches = Branch.objects.all()
 	return render(request, 'overview.html', {'overview':True, 'branches':branches})
+
+
+@login_required
+def dashboard(request, filter_value=None):
+	branch_filters = ["KFC", "Taco Bell", "Pizza Hut"]
+	if filter_value in branch_filters:
+		branches = Branch.objects.filter(franchise=BRANDS[filter_value])
+	else:
+		branches = Branch.objects.all().order_by('-date')
+	return render(request, 'dashboard.html', {'branches':branches})
 
 
 @login_required
