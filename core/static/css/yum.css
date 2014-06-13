@@ -138,8 +138,8 @@ body {
 }
 
 .dashboard{
-	padding: 0 20px !important;
-	margin-bottom: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 .dashboard a{
@@ -150,7 +150,6 @@ body {
 
 .dashboard h3{
 	margin: 10px 0;
-
 }
 
 .hidden{
