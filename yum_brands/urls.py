@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'core.views.logout_aux', name='logout_aux'),
     url(r'^overview/$', 'core.views.overview', name='overview'),
     url(r'^dashboard/$', 'core.views.dashboard', name='dashboard'),
+    url(r'^filter/(?P<filter_value>.+)/$', 'core.views.filter', name='filter'),
 
     url(r'^add_branch/$', 'core.views.add_branch', name='add_branch'),
     url(r'^edit_branch/(?P<branch_id>\d+)/$', 'core.views.edit_branch', name='edit_branch'),

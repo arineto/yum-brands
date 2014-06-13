@@ -5,6 +5,13 @@ from core.models import *
 from core.forms import *
 
 
+BRANDS = {
+	"KFC":1,
+	"Taco Bell":2,
+	"Pizza Hut":3
+}
+
+
 def home(request):
 	if request.user.is_authenticated():
 		return redirect('/overview/')
@@ -41,6 +48,15 @@ def overview(request):
 def dashboard(request):
 	branches = Branch.objects.all()
 	return render(request, 'dashboard.html', {'branches':branches})
+
+
+def filter(request, filter_value):
+	branch_filters = ["KFC", "Taco Bell", "Pizza Hut"]
+	if filter_value in branch_filters:
+		branches = Branch.objects.filter(franchise=BRANDS[filter_value])
+	else:
+		branches = Branch.objects.all()
+	return render(request, 'overview.html', {'overview':True, 'branches':branches})
 
 
 @login_required
