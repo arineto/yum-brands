@@ -23,6 +23,16 @@
             </div>
           </div>
         </li>
+        {% else %}
+        <li>
+          <form method="POST" action="" class="navbar-form navbar-input-group my_search" role="search">
+            {% csrf_token %}
+            <div class="form-group" style="margin-left: 15px;">
+              <input id="searchTextField" name="search" type="textbox" class="form-control" placeholder="Search Box" value="{% if search_value %}{{ search_value }}{% endif %}">
+              <button class="btn btn-primary">Search</button>
+            </div>
+          </form>
+        </li>
         {% endif %}
         
         <li><a href="/overview/">Overview</a></li>

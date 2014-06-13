@@ -1,6 +1,7 @@
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from core.models import *
 from core.forms import *
 
@@ -51,11 +52,25 @@ def overview(request, filter_value=None):
 @login_required
 def dashboard(request, filter_value=None):
 	branch_filters = ["KFC", "Taco Bell", "Pizza Hut"]
+	search_value = None
 	if filter_value in branch_filters:
 		branches = Branch.objects.filter(franchise=BRANDS[filter_value])
 	else:
 		branches = Branch.objects.all().order_by('-date')
-	return render(request, 'dashboard.html', {'branches':branches})
+
+	if request.method == 'POST':
+		search_value = request.POST.get('search')
+		branches = branches.filter(
+				Q(name__icontains=search_value) |
+				Q(contact_name__icontains=search_value) |
+				Q(phone__icontains=search_value) |
+				Q(email__icontains=search_value) |
+				Q(owner_name__icontains=search_value) |
+				Q(operator_name__icontains=search_value) |
+				Q(address__icontains=search_value)
+			).order_by('-date')
+
+	return render(request, 'dashboard.html', {'branches':branches, 'search_value':search_value})
 
 
 @login_required
