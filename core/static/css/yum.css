@@ -183,3 +183,20 @@ body {
 		width: 400px !important;
 	}
 }
+
+th.header { 
+    background-image: url(../img/bg.gif); 
+    cursor: pointer !important;  
+    background-repeat: no-repeat; 
+    background-position: center right !important; 
+} 
+
+th.headerSortDown { 
+    background-image: url(../img/desc.gif); 
+    background-color: #eee;
+}
+
+th.headerSortUp { 
+    background-image: url(../img/asc.gif); 
+    background-color: #eee;
+} 

@@ -46,7 +46,7 @@ def overview(request):
 
 @login_required
 def dashboard(request):
-	branches = Branch.objects.all()
+	branches = Branch.objects.all().order_by('-date')
 	return render(request, 'dashboard.html', {'branches':branches})
 
 
