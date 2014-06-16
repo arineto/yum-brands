@@ -58,10 +58,12 @@
             <li>
               <form class="navbar-form navbar-right">
                 {% for competitor in competitors %}
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="{{ competitor.name }}" onclick="toggle_competitor(this, '{{ competitor.icon }}');"> {{ competitor.name }}
-                  </label>
+                <div class="filter_line">
+                  <span class="checkbox">
+                    <input type="checkbox" name="{{ competitor.name }}" onclick="toggle_competitor(this, '{{ MEDIA_URL }}{{ competitor.icon }}');">
+                  </span>
+                  <span class="filter_color_box"><img src="{{ MEDIA_URL }}{{ competitor.icon }}"></span>
+                  <span>{{ competitor.name }}</span>
                 </div>
                 {% endfor %}
               </form>              

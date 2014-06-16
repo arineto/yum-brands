@@ -53,16 +53,17 @@ body {
 
 .filter_color_box{
 	display: inline-block;
-	width: 20px;
-	height: 20px;
-	margin-right: 10px;
+	width: 25px;
+	height: 25px;
 	color:black;
 	text-align: center;
 }
 
 .filter_line{
-	height:40px;
-	padding: 10px;
+	height:25px;
+	margin: 10px 0;
+	margin-right: 15px;
+	width:100%;
 	vertical-align: middle;
 }
 
@@ -134,7 +135,7 @@ body {
 }
 
 .filter_color_box img{
-	height: 20px;
+	height: 25px;
 }
 
 .dashboard{
@@ -163,6 +164,10 @@ body {
 
 .align_center{
 	text-align: center;
+}
+
+.filter_line span{
+	display: inline-block;
 }
 
 @media (min-width: 768px) and (max-width: 991px){

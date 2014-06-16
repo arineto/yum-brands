@@ -1,7 +1,6 @@
 var comp_hash = {};
 var comp_name;
 var comp_icon;
-
 var comp_window;
 
 

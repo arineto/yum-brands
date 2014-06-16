@@ -27,7 +27,7 @@ class Branch(models.Model):
 
 class Brand(models.Model):
 	name = models.CharField(max_length=50, verbose_name="Brand")
-	icon = models.URLField()
+	icon = models.ImageField(upload_to="competitors_icons/", verbose_name="Icon")
 	date = models.DateTimeField(auto_now=True)
 
 	def __unicode__(self):
@@ -36,7 +36,7 @@ class Brand(models.Model):
 
 class Competitor(models.Model):
 	name = models.CharField(max_length=50, verbose_name="Competitor")
-	icon = models.URLField()
+	icon = models.ImageField(upload_to="competitors_icons/", verbose_name="Icon")
 	date = models.DateTimeField(auto_now=True)
 
 	def __unicode__(self):
