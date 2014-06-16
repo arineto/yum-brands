@@ -25,7 +25,7 @@
 			map = init_map(map);
 			{% for branch in branches %}
 				content = "<div class='box_content'> <img class='my_logo2' src='{{ STATIC_URL }}img/yum.svg'> <h4 class='box_title'>{{ branch.name }}</h4> <p class='align_center'>{{ branch.address }}</p> <p><b>Franchise:</b> {{ branch.get_franchise_display }}</p> <p><b>Contact Name:</b> {{ branch.contact_name }}</p> <p><b>Phone:</b> {{ branch.phone }}</p> <p><b>E-mail:</b> {{ branch.email }}</p> <p><b>Owner Name:</b> {{ branch.owner_name }}</p> <p><b>Operator Name:</b> {{ branch.operator_name}}</p> </div>";
-		        icon = "{{ STATIC_URL }}img/icons/{{ branch.get_franchise_display }}.png";
+		        icon = "{{ MEDIA_URL }}{{ branch.franchise.icon }}";
 		        create_marker("{{ branch.get_brand_display }}", "{{ branch.latitude }}", "{{ branch.longitude }}", icon, content);
 			{% endfor %}
 	    }

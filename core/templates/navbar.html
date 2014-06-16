@@ -44,10 +44,16 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filters<b class="caret"></b></a>
           <ul class="dropdown-menu" id="filters_drop">
-            <li><a href="/{% if overview %}overview{% else %}dashboard{% endif %}/">All</a></li>
-            <li><a href="/{% if overview %}overview{% else %}dashboard{% endif %}/KFC/">KFC</a></li>
-            <li><a href="/{% if overview %}overview{% else %}dashboard{% endif %}/Taco Bell/">Taco Bell</a></li>
-            <li><a href="/{% if overview %}overview{% else %}dashboard{% endif %}/Pizza Hut/">Pizza Hut</a></li>
+            {% for brand in brands %}
+            <li>
+              <a href="/{% if overview %}overview{% else %}dashboard{% endif %}/{{ brand.name }}">
+                <div class="filter_line">
+                  <span class="filter_color_box"><img src="{{ MEDIA_URL }}{{ brand.icon }}"></span>
+                  <span>{{ brand.name }}</span>
+                </div>
+              </a>
+            </li>
+            {% endfor %}
           </ul>
         </li>
 

@@ -43,7 +43,7 @@
 			{% for branch in branches %}
 				<tr>
 					<td>{{ branch.name }}</td>
-					<td>{{ branch.get_franchise_display }}</td>
+					<td>{{ branch.franchise.name }}</td>
 					<td>{{ branch.contact_name }}</td>
 					<td>{{ branch.phone }}</td>
 					<td>{{ branch.email }}</td>

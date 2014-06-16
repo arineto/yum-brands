@@ -6,13 +6,6 @@ from core.models import *
 from core.forms import *
 
 
-BRANDS = {
-	"KFC":1,
-	"Taco Bell":2,
-	"Pizza Hut":3
-}
-
-
 def home(request):
 	if request.user.is_authenticated():
 		return redirect('/overview/')
@@ -43,11 +36,12 @@ def logout_aux(request):
 def overview(request, filter_value=None):
 	branch_filters = ["KFC", "Taco Bell", "Pizza Hut"]
 	if filter_value in branch_filters:
-		branches = Branch.objects.filter(franchise=BRANDS[filter_value])
+		branches = Branch.objects.filter(franchise=Brand.objects.get(name=filter_value))
 	else:
 		branches = Branch.objects.all()
 	competitors = Competitor.objects.all()
-	return render(request, 'overview.html', {'overview':True, 'branches':branches, 'competitors':competitors})
+	brands = Brand.objects.all()
+	return render(request, 'overview.html', {'overview':True, 'branches':branches, 'brands':brands, 'competitors':competitors})
 
 
 @login_required
@@ -55,7 +49,7 @@ def dashboard(request, filter_value=None):
 	branch_filters = ["KFC", "Taco Bell", "Pizza Hut"]
 	search_value = None
 	if filter_value in branch_filters:
-		branches = Branch.objects.filter(franchise=BRANDS[filter_value])
+		branches = Branch.objects.filter(franchise=Brand.objects.get(name=filter_value))
 	else:
 		branches = Branch.objects.all().order_by('-date')
 
@@ -70,8 +64,8 @@ def dashboard(request, filter_value=None):
 				Q(operator_name__icontains=search_value) |
 				Q(address__icontains=search_value)
 			).order_by('-date')
-
-	return render(request, 'dashboard.html', {'branches':branches, 'search_value':search_value})
+	brands = Brand.objects.all()
+	return render(request, 'dashboard.html', {'branches':branches, 'brands':brands, 'search_value':search_value})
 
 
 @login_required
