@@ -13,7 +13,7 @@ function toggle_competitor(competitor, icon){
 		var longitude = map.getCenter().lng()
 		$.get("http://api.sandbox.yellowapi.com/FindBusiness/?what="+competitor.name+
 			"&where=cZ"+longitude+","+latitude+
-			"&dist=20&fmt=JSON&pgLen=100&apikey=aedsdgrqzqxevuk359eze8be&UID=arineto", function(data) {
+			"&dist=20&sflag=bn&fmt=JSON&pgLen=100&apikey=aedsdgrqzqxevuk359eze8be&UID=arineto", function(data) {
 				var items = data["listings"];
 				var i = 0;
 				for(i=0; i<items.length; i++){
