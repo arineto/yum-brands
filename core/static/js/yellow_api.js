@@ -19,6 +19,7 @@ function toggle_competitor(competitor, icon){
 				for(i=0; i<items.length; i++){
 					createMarker(items[i].name, items[i].address.street, items[i].geoCode.latitude, items[i].geoCode.longitude);
 				}
+				alert(data["summary"].pageCount);
 			})
 			.fail(function () {
 				alert("There was a problem with the server. Try again later.");
