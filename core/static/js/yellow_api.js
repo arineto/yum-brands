@@ -11,6 +11,7 @@ function toggle_competitor(competitor, icon){
 		comp_hash[comp_name] = [];
 		var latitude = map.getCenter().lat()
 		var longitude = map.getCenter().lng()
+		$("body").prepend("<div class='loading'></div>");
 		get_data(comp_name, latitude, longitude, 1);
 	}else{
 		array = comp_hash[competitor.name]
@@ -69,6 +70,8 @@ function get_data(name, latitude, longitude, page){
 				setTimeout(function(){
 					get_data(name, latitude, longitude, page+1);
 				}, 500);
+			}else{
+				$(".loading").remove();
 			}
 		});
 }
