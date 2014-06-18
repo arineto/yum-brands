@@ -11,19 +11,7 @@ function toggle_competitor(competitor, icon){
 		comp_hash[comp_name] = [];
 		var latitude = map.getCenter().lat()
 		var longitude = map.getCenter().lng()
-		$.get("http://api.sandbox.yellowapi.com/FindBusiness/?what="+competitor.name+
-			"&where=cZ"+longitude+","+latitude+
-			"&dist=20&sflag=bn&fmt=JSON&pgLen=100&apikey=aedsdgrqzqxevuk359eze8be&UID=arineto", function(data) {
-				var items = data["listings"];
-				var i = 0;
-				for(i=0; i<items.length; i++){
-					createMarker(items[i].name, items[i].address.street, items[i].geoCode.latitude, items[i].geoCode.longitude);
-				}
-				alert(data["summary"].pageCount);
-			})
-			.fail(function () {
-				alert("There was a problem with the server. Try again later.");
-			});
+		get_data(comp_name, latitude, longitude, 1);
 	}else{
 		array = comp_hash[competitor.name]
 		for (i=0; i<array.length; i++){
@@ -53,4 +41,29 @@ function createMarker(name, address, latitude, longitude){
 		comp_window.open(map, comp_marker);
 	});
 	comp_hash[comp_name].push(comp_marker);
+}
+
+function get_data(name, latitude, longitude, page){
+	var page_count;
+	$.get("http://api.sandbox.yellowapi.com/FindBusiness/?what="+name+"&where=cZ"+longitude+","+latitude+
+		"&dist=20&sflag=bn&fmt=JSON&pgLen=100&pg="+page+"&apikey=aedsdgrqzqxevuk359eze8be&UID=arineto", 
+		function(data) {
+			var items = data["listings"];
+			var i = 0;
+			for(i=0; i<items.length; i++){
+				createMarker(items[i].name, items[i].address.street, items[i].geoCode.latitude, items[i].geoCode.longitude);
+			}
+			page_count = data["summary"].pageCount;
+			// alert(page);
+		})
+		.fail(function () {
+			alert("There was a problem with the server. Try again later.");
+		})
+		.always(function (){
+			if(page<page_count){
+				setTimeout(function(){
+					get_data(name, latitude, longitude, page+1);
+				}, 500);
+			}
+		});
 }
