@@ -66,9 +66,9 @@
                 {% for competitor in competitors %}
                 <div class="filter_line">
                   <span class="checkbox">
-                    <input type="checkbox" name="{{ competitor.name }}" onclick="toggle_competitor(this, '{{ MEDIA_URL }}{{ competitor.icon }}');">
+                    <input type="checkbox" name="{{ competitor.name }}" onclick="toggle_competitor(this, '{{ competitor.icon.url }}');">
                   </span>
-                  <span class="filter_color_box"><img src="{{ MEDIA_URL }}{{ competitor.icon }}"></span>
+                  <span class="filter_color_box"><img src="{{ competitor.icon.url }}"></span>
                   <span>{{ competitor.name }}</span>
                 </div>
                 {% endfor %}
