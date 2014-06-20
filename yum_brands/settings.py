@@ -94,6 +94,12 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = BASE_DIR+'/core/media/'
 MEDIA_URL = '/media/'
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'support@p15media.com'
+EMAIL_HOST_PASSWORD = '1nteractive'
+EMAIL_PORT = 587
+
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
 

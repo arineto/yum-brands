@@ -1,7 +1,10 @@
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 from django.db.models import Q
+from random import randint
 from core.models import *
 from core.forms import *
 
@@ -109,3 +112,22 @@ def edit_branch(request, branch_id):
 def delete_branch(request, branch_id):
 	Branch.objects.get(id=branch_id).delete()
 	return redirect('/dashboard/')
+
+
+def forgot_password(request):
+	answer = None
+	if request.method == "POST":
+		email = request.POST.get("email")
+		try:
+			user = User.objects.get(email=email)
+			new_password = randint(100000, 999999)
+			message = "Hello, \nThis is an answer to password recovery. Please change your password for security reasons.\nNew Password: "+str(new_password)
+			email = EmailMessage('Yum! Brands', message, to=[email])
+			email.send()
+			user.set_password(new_password)
+			user.save()
+			answer = "The password was sent to you email."
+		except:
+			answer = "There are no accounts registered in this email."
+
+	return render(request, 'login.html', {'forgot_password':True, 'answer':answer})
