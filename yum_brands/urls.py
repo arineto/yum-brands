@@ -11,7 +11,8 @@ urlpatterns = patterns('',
     url(r'^dashboard/$', 'core.views.dashboard', name='dashboard'),
     url(r'^dashboard/(?P<filter_value>.+)/$', 'core.views.dashboard', name='dashboard'),
 
-    url(r'^forgot_password/$', 'core.views.forgot_password', name='forgot_password'),    
+    url(r'^forgot_password/$', 'core.views.forgot_password', name='forgot_password'),  
+    url(r'^change_password/$', 'core.views.change_password', name='change_password'),  
 
     url(r'^add_branch/$', 'core.views.add_branch', name='add_branch'),
     url(r'^edit_branch/(?P<branch_id>\d+)/$', 'core.views.edit_branch', name='edit_branch'),

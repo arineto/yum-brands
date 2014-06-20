@@ -40,7 +40,11 @@
 	<div class="jumbotron">
 		<form method="POST" action="" name="form" role="form" class="my_form">
 			{% csrf_token %}
-			<h4>Add Branch</h4>
+			{% if change_password %}
+				<h4>Change Password</h4>
+			{% else %}
+				<h4>Add Branch</h4>
+			{% endif %}
 			{% for field in form %}
 		      <div class="form-group {% if field.errors %}has-error{% endif %}">
 		        <label>{{ field.label }}</label>
@@ -48,12 +52,20 @@
 		        {% if field.errors %}
 		          <p class="text-danger form_error">{{ field.errors|join:", " }}</p>
 		        {% endif %}
+		        {% if error and field.name == "old_password" %}
+		          <p class="text-danger form_error">{{ error }}</p>
+		        {% endif %}
 		      </div>
 		    {% endfor %}
 		    <input type="hidden" name="latitude" id="id_latitude">
 		    <input type="hidden" name="longitude" id="id_longitude">
 		    <a href="/dashboard/" class="btn btn-default">Back</a>
-		    <a onclick="getLatLng()" class="btn btn-default">Submit</a>
+		    {% if change_password %}
+				<input type="submit" value="Submit" class="btn btn-default">
+			{% else %}
+				<a onclick="getLatLng()" class="btn btn-default">Submit</a>
+			{% endif %}
+		    
 		</form>
 	</div>
 </body>

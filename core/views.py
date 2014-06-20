@@ -131,3 +131,22 @@ def forgot_password(request):
 			answer = "There are no accounts registered in this email."
 
 	return render(request, 'login.html', {'forgot_password':True, 'answer':answer})
+
+
+@login_required
+def change_password(request):
+	error = None
+	if request.method == 'POST':
+		form = ChangePasswordForm(request.POST)
+		if not request.user.check_password(request.POST.get('old_password')):
+			error = "Wrong old password"
+		else:
+			if form.is_valid():
+				request.user.set_password(request.POST.get('password1'))
+				request.user.save()
+				return redirect('/')
+	else:
+		form = ChangePasswordForm()
+	return render(request, 'forms.html', {'change_password':True, 'form':form, 'error':error})
+
+
