@@ -5,3 +5,4 @@ from core.models import *
 admin.site.register(Branch)
 admin.site.register(Brand)
 admin.site.register(Competitor)
+admin.site.register(LoginPicture)
